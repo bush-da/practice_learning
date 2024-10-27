@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deletion-Resilient Pagination</title>
+</head>
+<body>
+    <h1>Popular Baby Names</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Child's First Name</th>
+                <th>Gender</th>
+                <th>Ethnicity</th>
+                <th>Year of Birth</th>
+                <th>Count</th>
+                <th>Rank</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for year, gender, ethnicity, name, count, rank in data %}
+            <tr>
+                <td>{{ name }}</td>
+                <td>{{ gender }}</td>
+                <td>{{ ethnicity }}</td>
+                <td>{{ year }}</td>
+                <td>{{ count }}</td>
+                <td>{{ rank }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Pagination Controls -->
+    <div>
+        {% if index > 0 %}
+        <a href="?index={{ index - page_size }}&page_size={{ page_size }}">Previous</a>
+        {% endif %}
+
+        {% if next_index %}
+        <a href="?index={{ next_index }}&page_size={{ page_size }}">Next</a>
+        {% endif %}
+    </div>
+</body>
+</html>
