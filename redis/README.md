@@ -39,13 +39,32 @@ A simple URL shortener API built with Python, Flask, and Redis. This API allows 
     python app.py
     ```
 
-## API Endpoints
+## API Endpoints and Example Usage
 
 ### 1. Shorten a URL
-- **Endpoint**: `/shorten`
-- **Method**: `POST`
-- **Request Body**:
-  ```json
-  {
-    "url": "https://www.example.com"
-  }
+To shorten a URL, send a `POST` request to the `/shorten` endpoint with the URL you want to shorten in the request body. 
+
+Example usage with `curl`:
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"url": "https://www.example.com"}' http://127.0.0.1:5000/shorten
+```
+Expected Response:
+
+```json
+
+{
+  "short_url": "http://127.0.0.1:5000/abc123"
+}
+```
+To track the number of times a shortened URL has been accessed, send a GET request to the /analytics/<short_id> endpoint.
+```bash
+curl -X GET http://127.0.0.1:5000/analytics/abc123
+```
+Expected Response:
+
+```json
+
+{
+  "visits": 1
+}
+```
